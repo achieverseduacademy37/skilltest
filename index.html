@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SkillTest Pro — SSC Steno Exam Preparation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0e1a;
+  --surface:#111827;
+  --surface2:#1a2235;
+  --border:#1e2d4a;
+  --accent:#3b82f6;
+  --accent2:#06b6d4;
+  --gold:#f59e0b;
+  --green:#10b981;
+  --red:#ef4444;
+  --text:#f0f4ff;
+  --muted:#8fa3c3;
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(10,14,26,.92);backdrop-filter:blur(12px);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-mark svg{width:20px;height:20px;fill:#fff;}
+.nav-brand{font-family:var(--font-display);font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:8px;align-items:center;}
+.nav-link{padding:7px 16px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;text-decoration:none;transition:.2s;}
+.nav-link:hover{color:var(--text);background:var(--surface2);}
+.nav-link.active{color:var(--text);}
+.nav-cta{padding:8px 18px;background:var(--accent);color:#fff;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:.2s;}
+.nav-cta:hover{background:#2563eb;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(59,130,246,.18),transparent),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(6,182,212,.1),transparent);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.35;pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:24px;letter-spacing:.8px;text-transform:uppercase;}
+.hero h1{font-family:var(--font-display);font-size:clamp(36px,6vw,72px);font-weight:800;line-height:1.05;margin-bottom:20px;max-width:860px;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:40px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:64px;}
+.btn-primary{padding:14px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:.2s;letter-spacing:.3px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.35);}
+.btn-outline{padding:14px 32px;background:transparent;color:var(--text);border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:.2s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;justify-content:center;}
+.hero-stat{text-align:center;}
+.hero-stat .n{font-family:var(--font-display);font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+/* SECTIONS */
+section{padding:80px 5%;}
+.section-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;}
+.section-title{font-family:var(--font-display);font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.15;margin-bottom:16px;}
+.section-sub{font-size:16px;color:var(--muted);max-width:520px;line-height:1.7;}
+
+/* AVAILABLE TESTS */
+#tests{background:var(--surface);}
+.tests-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:40px;}
+.test-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;transition:.2s;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;}
+.test-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(6,182,212,.04));opacity:0;transition:.3s;}
+.test-card:hover{border-color:rgba(59,130,246,.4);transform:translateY(-2px);}
+.test-card:hover::before{opacity:1;}
+.test-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.test-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.test-tag{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;}
+.tag-live{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+.tag-coming{background:rgba(245,158,11,.1);color:var(--gold);border:1px solid rgba(245,158,11,.2);}
+.test-card h3{font-family:var(--font-display);font-size:17px;font-weight:800;margin-bottom:6px;color:var(--text);}
+.test-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.test-meta{display:flex;gap:14px;flex-wrap:wrap;}
+.test-meta-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.test-meta-item svg{width:13px;height:13px;flex-shrink:0;}
+.test-card-footer{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.test-attempts{font-size:12px;color:var(--muted);}
+.test-start-btn{font-size:13px;font-weight:700;color:var(--accent);background:rgba(59,130,246,.1);padding:6px 14px;border-radius:6px;border:none;cursor:pointer;transition:.2s;}
+.test-start-btn:hover{background:rgba(59,130,246,.2);}
+.test-card.disabled{opacity:.55;pointer-events:none;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:40px;}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.feat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;}
+.feat-card h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+.feat-card p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* LEADERBOARD PREVIEW */
+#leaderboard-preview{background:var(--surface);}
+.lb-preview-wrap{max-width:680px;margin:40px auto 0;}
+.lb-tab-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.lb-tab{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface2);border:1px solid var(--border);color:var(--muted);transition:.2s;}
+.lb-tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.lb-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;transition:.2s;}
+.lb-row:hover{border-color:var(--border);background:var(--surface2);}
+.lb-rank{width:30px;text-align:center;font-family:var(--font-display);font-size:16px;font-weight:800;}
+.lb-rank.gold{color:var(--gold);}
+.lb-rank.silver{color:#94a3b8;}
+.lb-rank.bronze{color:#cd7c3a;}
+.lb-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+.lb-info{flex:1;}
+.lb-name{font-size:14px;font-weight:600;}
+.lb-sub{font-size:12px;color:var(--muted);margin-top:1px;}
+.lb-score{text-align:right;}
+.lb-score .sc{font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--accent2);}
+.lb-score .acc{font-size:11px;color:var(--muted);}
+.lb-empty{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+
+/* FOOTER */
+footer{padding:40px 5%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:16px;}
+.footer-brand{font-family:var(--font-display);font-size:16px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-note{font-size:12px;color:var(--muted);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:.2s;}
+.footer-links a:hover{color:var(--text);}
+
+/* NOTIFICATION */
+.notif{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--accent);border-radius:12px;padding:14px 20px;font-size:13.5px;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:.35s;max-width:320px;}
+.notif.show{transform:translateY(0);opacity:1;}
+
+@media(max-width:600px){
+  .hero-btns{flex-direction:column;align-items:center;}
+  .hero-stat .n{font-size:22px;}
+  .nav-links .nav-link:not(.nav-cta){display:none;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <span class="nav-brand">SkillTest Pro</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#tests">Tests</a>
+    <a class="nav-link" href="#leaderboard-preview">Leaderboard</a>
+    <a class="nav-link" href="leaderboard.html">Full Board</a>
+    <a class="nav-cta" href="#tests">Start a Test</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+    SSC Steno Grade C &amp; D — 2025 Pattern
+  </div>
+  <h1>Master Every Topic.<br/><span>Crack SSC Steno.</span></h1>
+  <p class="hero-sub">Practise with real exam-pattern questions, detailed explanations, and instant performance analytics — built for serious aspirants.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#tests">Browse Tests →</a>
+    <a class="btn-outline" href="leaderboard.html">View Leaderboard</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n" id="heroTotal">—</div><div class="l">Tests Taken</div></div>
+    <div class="hero-stat"><div class="n">50+</div><div class="l">Questions / Test</div></div>
+    <div class="hero-stat"><div class="n">8</div><div class="l">Topics Covered</div></div>
+    <div class="hero-stat"><div class="n">Free</div><div class="l">Always</div></div>
+  </div>
+</section>
+
+<!-- AVAILABLE TESTS -->
+<section id="tests">
+  <div class="section-label">Mock Tests</div>
+  <div class="section-title">Pick Your Topic, Start Now</div>
+  <p class="section-sub">Each test follows the latest SSC Steno exam pattern. Negative marking of −0.25 per wrong answer.</p>
+  <div class="tests-grid" id="testsGrid">
+
+    <!-- HISTORY TEST — LIVE -->
+    <a href="test.html?test=history" class="test-card">
+      <div class="test-card-top">
+        <div class="test-icon" style="background:rgba(245,158,11,.12);font-size:22px;">🏛️</div>
+        <span class="test-tag tag-live">Live</span>
+      </div>
+      <h3>General Awareness — History</h3>
+      <p>Ancient, Medieval &amp; Modern India — mixed, indirect-style questions at moderate–difficult level.</p>
+      <div class="test-meta">
+        <div class="test-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>48 mins</div>
+        <div class="test-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>50 Questions</div>
+        <div class="test-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>50 Marks</div>
+      </div>
+      <div class="test-card-footer">
+        <span class="test-attempts" id="histAttempts">Loading...</span>
+        <span class="test-start-btn">Start →</span>
+      </div>
+    </a>
+
+    <!-- COMING SOON CARDS -->
+    <div class="test-card disabled">
+      <div class="test-card-top"><div class="test-icon" style="background:rgba(99,102,241,.12);">🗺️</div><span class="test-tag tag-coming">Coming Soon</span></div>
+      <h3>Geography</h3>
+      <p>Physical, Indian and World Geography — maps, climate, resources.</p>
+      <div class="test-meta">
+        <div class="test-meta-item">📅 48 mins</div>
+        <div class="test-meta-item">📋 50 Questions</div>
+      </div>
+      <div class="test-card-footer"><span class="test-attempts">—</span><span class="test-start-btn">Soon</span></div>
+    </div>
+
+    <div class="test-card disabled">
+      <div class="test-card-top"><div class="test-icon" style="background:rgba(16,185,129,.12);">⚖️</div><span class="test-tag tag-coming">Coming Soon</span></div>
+      <h3>Indian Polity</h3>
+      <p>Constitution, Parliament, Judiciary, Fundamental Rights &amp; DPSP.</p>
+      <div class="test-meta">
+        <div class="test-meta-item">📅 48 mins</div>
+        <div class="test-meta-item">📋 50 Questions</div>
+      </div>
+      <div class="test-card-footer"><span class="test-attempts">—</span><span class="test-start-btn">Soon</span></div>
+    </div>
+
+    <div class="test-card disabled">
+      <div class="test-card-top"><div class="test-icon" style="background:rgba(239,68,68,.12);">📐</div><span class="test-tag tag-coming">Coming Soon</span></div>
+      <h3>Quantitative Aptitude</h3>
+      <p>Number systems, algebra, percentages, time &amp; work, DI.</p>
+      <div class="test-meta">
+        <div class="test-meta-item">📅 48 mins</div>
+        <div class="test-meta-item">📋 50 Questions</div>
+      </div>
+      <div class="test-card-footer"><span class="test-attempts">—</span><span class="test-start-btn">Soon</span></div>
+    </div>
+
+    <div class="test-card disabled">
+      <div class="test-card-top"><div class="test-icon" style="background:rgba(6,182,212,.12);">🔤</div><span class="test-tag tag-coming">Coming Soon</span></div>
+      <h3>English Language</h3>
+      <p>Reading comprehension, vocabulary, grammar &amp; error spotting.</p>
+      <div class="test-meta">
+        <div class="test-meta-item">📅 48 mins</div>
+        <div class="test-meta-item">📋 50 Questions</div>
+      </div>
+      <div class="test-card-footer"><span class="test-attempts">—</span><span class="test-start-btn">Soon</span></div>
+    </div>
+
+    <div class="test-card disabled">
+      <div class="test-card-top"><div class="test-icon" style="background:rgba(168,85,247,.12);">🧪</div><span class="test-tag tag-coming">Coming Soon</span></div>
+      <h3>General Science</h3>
+      <p>Physics, Chemistry and Biology at SSC level.</p>
+      <div class="test-meta">
+        <div class="test-meta-item">📅 48 mins</div>
+        <div class="test-meta-item">📋 50 Questions</div>
+      </div>
+      <div class="test-card-footer"><span class="test-attempts">—</span><span class="test-start-btn">Soon</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <div class="section-label">Platform Features</div>
+  <div class="section-title">Built for SSC Aspirants</div>
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(59,130,246,.12);">🎯</div><h3>SSC Equity Pattern</h3><p>All questions follow the latest indirect-reasoning style as per SSC 2025 syllabus and exam trend.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(16,185,129,.12);">📊</div><h3>Detailed Analysis</h3><p>Section-wise performance, time analysis, and per-question explanations with source notes.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(245,158,11,.12);">🏆</div><h3>Live Leaderboard</h3><p>Compare your score with other aspirants. Rankings update after every submission.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(6,182,212,.12);">📝</div><h3>Google Sheets Backend</h3><p>Your data is saved securely to a connected Sheet — accessible to instructors anytime.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(239,68,68,.12);">⏱️</div><h3>Real Exam Timer</h3><p>Timed exactly like the actual CBT — 48 mins for 50 questions (scaled from 200 marks / 2 hrs).</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:rgba(168,85,247,.12);">🔄</div><h3>Reattempt Anytime</h3><p>All attempts are tracked. Review your previous attempt results and improve each time.</p></div>
+  </div>
+</section>
+
+<!-- LEADERBOARD PREVIEW -->
+<section id="leaderboard-preview">
+  <div style="text-align:center;margin-bottom:8px;"><div class="section-label">Top Performers</div></div>
+  <div class="section-title" style="text-align:center;">Live Leaderboard</div>
+  <div class="lb-preview-wrap">
+    <div class="lb-tab-row" id="lbTabRow"></div>
+    <div id="lbPreviewList"></div>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="leaderboard.html" class="btn-outline">View Full Leaderboard →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">SkillTest Pro</div>
+    <div class="footer-note" style="margin-top:4px;">For SSC Steno Grade C &amp; D Aspirants</div>
+  </div>
+  <div class="footer-links">
+    <a href="#tests">Tests</a>
+    <a href="leaderboard.html">Leaderboard</a>
+  </div>
+  <div class="footer-note">© 2025 SkillTest Pro. Free for all aspirants.</div>
+</footer>
+
+<div class="notif" id="notif"></div>
+
+<script src="js/sheets.js"></script>
+<script>
+// Load leaderboard preview and stats
+async function loadPreview(){
+  try{
+    const data = await SheetsAPI.getLeaderboard();
+    const tests = [...new Set(data.map(r=>r.testName))];
+    const tabRow = document.getElementById('lbTabRow');
+    const list = document.getElementById('lbPreviewList');
+    
+    // update hero total
+    document.getElementById('heroTotal').textContent = data.length;
+    // update attempts
+    const histCount = data.filter(r=>r.testName==='History').length;
+    document.getElementById('histAttempts').textContent = `${histCount} attempt${histCount!==1?'s':''}`;
+
+    if(tests.length===0){list.innerHTML=`<div class="lb-empty">No attempts yet. Be the first to take the test!</div>`;return;}
+    
+    let activeTest = tests[0];
+    function renderTab(testName){
+      activeTest=testName;
+      tabRow.innerHTML='';
+      tests.forEach(t=>{
+        const b=document.createElement('div');
+        b.className='lb-tab'+(t===testName?' active':'');
+        b.textContent=t;
+        b.onclick=()=>renderTab(t);
+        tabRow.appendChild(b);
+      });
+      const filtered = data.filter(r=>r.testName===testName).sort((a,b)=>b.score-a.score).slice(0,5);
+      const colors=['#f59e0b','#94a3b8','#cd7c3a','#6366f1','#10b981'];
+      const rankClass=['gold','silver','bronze','',''];
+      list.innerHTML='';
+      filtered.forEach((r,i)=>{
+        const initials=r.name.split(' ').map(w=>w[0]).join('').toUpperCase().substring(0,2);
+        const div=document.createElement('div');
+        div.className='lb-row';
+        div.innerHTML=`
+          <div class="lb-rank ${rankClass[i]}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div>
+          <div class="lb-avatar" style="background:${colors[i]}22;color:${colors[i]}">${initials}</div>
+          <div class="lb-info"><div class="lb-name">${r.name}</div><div class="lb-sub">${r.timeTaken} • ${r.date}</div></div>
+          <div class="lb-score"><div class="sc">${r.score}</div><div class="acc">${r.accuracy}% acc</div></div>`;
+        list.appendChild(div);
+      });
+      if(filtered.length===0) list.innerHTML=`<div class="lb-empty">No attempts for this test yet.</div>`;
+    }
+    renderTab(tests[0]);
+  } catch(e){
+    document.getElementById('histAttempts').textContent='Take first attempt!';
+    document.getElementById('heroTotal').textContent='0';
+    document.getElementById('lbPreviewList').innerHTML=`<div class="lb-empty">No data yet — take a test to appear here!</div>`;
+  }
+}
+loadPreview();
+</script>
+</body>
+</html>
