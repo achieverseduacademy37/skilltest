@@ -41,7 +41,7 @@
  * 4. Copy the deployment URL and paste below as SHEET_URL
  */
 
-const SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzVLcSZy1aLYKaXli2p3F4MWNZ96tvzBrMpseMXiR_p5Hbm8FzbwFqauE7yMQyBFoEV/exec';
 // Example: 'https://script.google.com/macros/s/AKfyc.../exec'
 
 const SheetsAPI = {
@@ -51,7 +51,7 @@ const SheetsAPI = {
    * @param {Object} result - The result object
    */
   async submit(result) {
-    if (!SHEET_URL || SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    if (!SHEET_URL || SHEET_URL === 'https://script.google.com/macros/s/AKfycbzVLcSZy1aLYKaXli2p3F4MWNZ96tvzBrMpseMXiR_p5Hbm8FzbwFqauE7yMQyBFoEV/exec') {
       console.warn('SheetsAPI: No URL configured. Data not saved.');
       return { status: 'skipped', reason: 'no_url' };
     }
@@ -74,7 +74,7 @@ const SheetsAPI = {
    * @returns {Array} Array of result objects
    */
   async getLeaderboard() {
-    if (!SHEET_URL || SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    if (!SHEET_URL || SHEET_URL === 'https://script.google.com/macros/s/AKfycbzVLcSZy1aLYKaXli2p3F4MWNZ96tvzBrMpseMXiR_p5Hbm8FzbwFqauE7yMQyBFoEV/exec') {
       return [];
     }
     try {
